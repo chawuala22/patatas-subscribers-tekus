@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("../../../assets/img/background-potato.jpg");
+  background-image: url("/assets/img/background-potato.jpg");
   width: 100vw;
   height: 100vh;
   background-repeat: no-repeat;
@@ -40,27 +40,26 @@
         }
       }
       input {
-        height: 30px;
-        margin: 0.5rem 0rem;
         color: #fff;
       }
       button {
         margin-top: 2%;
         border: 1px solid #000;
-        color: #fff;
-        &:hover {
-          background-color: #fff;
-          color: #000;
-        }
+        color: #000;
       }
     }
   }
 }
 @media (width < 768px) {
   .login-container {
-    background-image: url("../../../assets/img/potato-background-mobile.jpg");
+    background-image: url("/assets/img/potato-background-mobile.jpg");
     .card-container {
       width: 97%;
+    }
+    .form-container{
+      input{
+        color: #fff;
+      }
     }
   }
 }
