@@ -7,4 +7,10 @@ export class PatatasSubscribersService {
 
   
   constructor() { }
+
+  deleteSubscriptor(id:number){
+    console.log('hola', id);
+    
+  }
+
 }
