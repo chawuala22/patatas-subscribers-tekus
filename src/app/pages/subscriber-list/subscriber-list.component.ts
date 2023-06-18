@@ -5,10 +5,9 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
-import { SubscriberCreateComponent } from 'src/app/components/subscriber-create/subscriber-create.component';
-import { ISubscriber } from 'src/app/models/subscriber';
 import { PatatasSubscribersService } from 'src/app/services/patatas-subscribers.service';
 import Swal from 'sweetalert2';
+import { SubscriberFormComponent } from 'src/app/components/subscriber-form/subscriber-form.component';
 
 @Component({
   selector: 'app-subscriber-list',
@@ -40,17 +39,27 @@ export class SubscriberListComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource(users);
   }
 
-  openDialog() {
-    let dialogRef = this.dialog.open(SubscriberCreateComponent, {
-      height: '400px',
-      width: '600px',
-    });
-  }
+  
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
+  createSubscriptor() {
+    let dialogRef = this.dialog.open(SubscriberFormComponent, {
+      height: '400px',
+      width: '600px',
+    });
+  }
+
+  editSubscriptor(row: any) {
+    this.dialog.open(SubscriberFormComponent, {
+      width: '30%',
+      data: row,
+    });
+  }
+
   // deleteSubscriptor(id: number) {
   //   this.apiSubscribe.deleteSubscriptor(id).subscribe({
   //     next: (res) => {
@@ -64,6 +73,8 @@ export class SubscriberListComponent implements AfterViewInit {
   //     },
   //   });
   // }
+
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

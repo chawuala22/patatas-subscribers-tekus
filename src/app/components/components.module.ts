@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SubscriberEditComponent } from './subscriber-edit/subscriber-edit.component';
-import { SubscriberCreateComponent } from './subscriber-create/subscriber-create.component';
+import { SubscriberFormComponent } from './subscriber-form/subscriber-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    SubscriberEditComponent,
-    SubscriberCreateComponent
+    SubscriberFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class ComponentsModule { }

@@ -1,0 +1,43 @@
+<h1 matDialogTitle>AGREGAR</h1>
+<div matDialogContent>
+  <form [formGroup]="formSubscriber">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input formControlName="nombre" matInput  />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Estadio</mat-label>
+      <input formControlName="estadio" matInput  />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Sitio Web</mat-label>
+      <input formControlName="sitioWeb" matInput  />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nacionalidad</mat-label>
+      <input formControlName="nacionalidad" matInput  />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Fundacion</mat-label>
+      <input formControlName="fundacion" matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Entrenador</mat-label>
+      <input formControlName="entrenador" matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Capacidad</mat-label>
+      <input formControlName="capacidad" matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Valor</mat-label>
+      <input formControlName="valor" matInput />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="primary" >{{actionBtn}}</button>
+  <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+</div>
