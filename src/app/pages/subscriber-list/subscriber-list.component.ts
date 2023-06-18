@@ -31,15 +31,16 @@ export class SubscriberListComponent implements AfterViewInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(public dialog: MatDialog, private apiSubscribe: PatatasSubscribersService) {
+  constructor(
+    public dialog: MatDialog,
+    private apiSubscribe: PatatasSubscribersService
+  ) {
     // Create 100 users
-    const users = ['id', 'name', 'email', 'phone', 'area']
+    const users = ['id', 'name', 'email', 'phone', 'area'];
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
   }
-
-  
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -60,20 +61,21 @@ export class SubscriberListComponent implements AfterViewInit {
     });
   }
 
-  // deleteSubscriptor(id: number) {
-  //   this.apiSubscribe.deleteSubscriptor(id).subscribe({
-  //     next: (res) => {
-  //       Swal.fire('Eliminado con exito');
-  //       setTimeout(() => {
-  //         window.location.reload();
-  //       }, 2000);
-  //     },
-  //     error: () => {
-  //       Swal.fire('Eliminado sin exito');
-  //     },
-  //   });
-  // }
-
+  deleteSubscriptor(id: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Deleted!', 'Your subscriptor has been deleted.', 'success');
+      }
+    });
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
