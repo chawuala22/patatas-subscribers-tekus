@@ -32,6 +32,9 @@
     input {
       color: #fff;
     }
+    td, th {
+      width: 14%;
+    }
   }
 }
 
@@ -47,6 +50,9 @@
     }
     .table-container{
         width: 89%;
+    }
+    .hidden{
+      display: none;
     }
   }
   mat-paginator{

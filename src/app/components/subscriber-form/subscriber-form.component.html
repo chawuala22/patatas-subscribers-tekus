@@ -1,43 +1,55 @@
-<h1 matDialogTitle>AGREGAR</h1>
-<div matDialogContent>
+<div class="title-container">
+  <h1 matDialogTitle>{{titleForm}}</h1>
+</div>
+<div matDialogContent class="form-container">
   <form [formGroup]="formSubscriber">
+
     <mat-form-field appearance="outline">
-      <mat-label>Nombre</mat-label>
-      <input formControlName="nombre" matInput  />
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput  />
+      <mat-error>
+        Name is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
   
     <mat-form-field appearance="outline">
-      <mat-label>Estadio</mat-label>
-      <input formControlName="estadio" matInput  />
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput  />
+      <mat-error>
+        Email is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Sitio Web</mat-label>
-      <input formControlName="sitioWeb" matInput  />
+      <mat-label>Country code</mat-label>
+      <input formControlName="countryCode" matInput  />
+      <mat-hint>Eg: CO</mat-hint>
+      <mat-error *ngIf="!editData && formSubscriber?.value.countryCode.length > 2">Incorrect country code</mat-error>
+      <mat-error *ngIf="!editData && formSubscriber?.value.countryCode.length == 0" > Country code is <strong>required</strong></mat-error>
+      <mat-error>
+        
+      </mat-error>
     </mat-form-field>
+
     <mat-form-field appearance="outline">
-      <mat-label>Nacionalidad</mat-label>
-      <input formControlName="nacionalidad" matInput  />
+      <mat-label>Phone</mat-label>
+      <input formControlName="phoneNumber" matInput  />
+      <mat-error *ngIf="!editData && formSubscriber?.value.phoneNumber.length != 0">Wrong phone number</mat-error>
+      <mat-error *ngIf="!editData && formSubscriber?.value.phoneNumber.length == 0"> Phone is <strong>required</strong></mat-error>
     </mat-form-field>
+
     <mat-form-field appearance="outline">
-      <mat-label>Fundacion</mat-label>
-      <input formControlName="fundacion" matInput />
+      <mat-label>Job title</mat-label>
+      <input formControlName="jobTitle" matInput />
     </mat-form-field>
+
     <mat-form-field appearance="outline">
-      <mat-label>Entrenador</mat-label>
-      <input formControlName="entrenador" matInput />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Capacidad</mat-label>
-      <input formControlName="capacidad" matInput />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Valor</mat-label>
-      <input formControlName="valor" matInput />
+      <mat-label>Area</mat-label>
+      <input formControlName="area" matInput />
     </mat-form-field>
   </form>
 </div>
-<div mat-dialog-actions [align]="'end'">
-  <button mat-raised-button color="primary" >{{actionBtn}}</button>
-  <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+<div mat-dialog-actions class="form-button">
+  <button mat-raised-button color="primary" (click)="addSubscriber()" >{{actionBtn}}</button>
+  <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
 </div>

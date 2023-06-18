@@ -56,7 +56,8 @@ export class SubscriberListComponent implements AfterViewInit {
 
   editSubscriptor(row: any) {
     this.dialog.open(SubscriberFormComponent, {
-      width: '30%',
+      height: '400px',
+      width: '600px',
       data: row,
     });
   }
