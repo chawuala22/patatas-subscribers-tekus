@@ -5,9 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { PagesModule } from './pages/pages.module';
-import { SubscriberEditComponent } from './components/subscriber-edit/subscriber-edit.component';
-import { ComponentsModule } from './components/components.module';
 import { NopagefoundComponent } from './components/nopagefound/nopagefound.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { ComponentsModule } from './components/components.module';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import { NopagefoundComponent } from './components/nopagefound/nopagefound.compo
     AppRoutingModule,
     AuthModule,
     PagesModule,
-    ComponentsModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

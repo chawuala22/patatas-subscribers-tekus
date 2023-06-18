@@ -1,27 +1,26 @@
-<main class="main-container">
-    <div class="banner">
-      <img src="assets\img\background-potato.jpg" alt="banner">
-    </div>
-    <div class="login-wrapper">
-      <div class="login-card card">
-        <h1 class="title">Bienvenidos</h1>
-        <form [formGroup]="loginForm" (submit)="submit()">
-          <div class="form-field">
-            <label class="label">Nombre de Usuario</label>
-            <input class="input" type="text" formControlName="userName" placeholder="Ingrese su Usuario">
-            <p class="error"  *ngIf="loginForm.controls['userName'].invalid && loginForm.controls['userName'].touched">El campo usuario es requerido</p>
-          </div>
-          <div class="form-field">
-            <label class="label">Contraseña</label>
-            <input class="input" type="password" formControlName="password" placeholder="Ingrese su Contraseña">
-            <p class="error"  *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">El campo contraseña es requerido</p>
-          </div>
-          <div class="buttons">
-            <button class="btn btn-primary" type="submit">Ingresar</button>
-            <button class="btn btn-secondary" type="submit">Cancelar</button>
-          </div>
-          <p class="error" *ngIf="message">{{ message }}</p>
-        </form>
-      </div>
-    </div>
-  </main>
+<div class="login-container">
+  <div class="card-container">
+   <div class="form-container">
+    <h1>Patatas Subscribers ToGo</h1>
+    <form [formGroup]="loginForm" (submit)="validatorUser()">
+      <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input formControlName="userName" matInput>
+        <mat-error>
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" type="password" matInput>
+        <mat-error>
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button>Login</button>
+    </form>
+
+   </div>
+  </div>
+</div>
