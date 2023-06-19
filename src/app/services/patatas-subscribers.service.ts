@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IResult, ISubscriber } from '../interfaces/subscriber';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,37 +12,32 @@ export class PatatasSubscribersService {
 
   constructor(
     private _httpClient: HttpClient,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private authService: AuthService
   ) {}
 
   createSubscriptor(data: ISubscriber) {
+    this.authService.refreshToken();
     const token = this.cookieService.get('authToken');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
     return this._httpClient.post<ISubscriber>(
       `${this.urlBase}subscribers`,
-      {Subscribers: [data]}, {headers}
+      { Subscribers: [data] },
+      { headers }
     );
   }
-
   getAllSubscriptor(page?: number, pageSize?: number) {
-    let params = new HttpParams();
-    if (page !== undefined && pageSize !== undefined) {
-      params = params.set('page', page);
-      params = params.set('pageSize', pageSize);
-    }
+    this.authService.refreshToken();
     const token = this.cookieService.get('authToken');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this._httpClient.get<IResult>(`${this.urlBase}subscribers/`, {
-      params,
-      headers,
-    });
+    return this._httpClient.get<IResult>(`${this.urlBase}subscribers/`, { headers });
   }
-
   getSubscriptor(id: number) {
+    this.authService.refreshToken();
     const token = this.cookieService.get('authToken');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -51,8 +47,8 @@ export class PatatasSubscribersService {
       { headers }
     );
   }
-
   updateSubscriptor(data: ISubscriber[], id: number) {
+    this.authService.refreshToken();
     const token = this.cookieService.get('authToken');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -63,8 +59,8 @@ export class PatatasSubscribersService {
       { headers }
     );
   }
-
   deleteSubscriptor(id: number) {
+    this.authService.refreshToken();
     const token = this.cookieService.get('authToken');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,

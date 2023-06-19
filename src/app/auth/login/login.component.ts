@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -31,20 +32,22 @@ export class LoginComponent {
       UserName: this.loginForm.value.userName,
       Password: this.loginForm.value.password,
     };
-    this.authService.login(credentials).pipe(
-      switchMap((response) => {
-        this.token = response.Token;  
-        console.log(this.token);
-        return this.authService.makeAuthenticatedRequest(this.token);
-      })
-    ).subscribe(
-      (response) => {
-        console.log(response);
-        this.router.navigateByUrl('/home');
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    this.authService
+      .login(credentials)
+      .pipe(
+        switchMap((response) => {
+          this.token = response.Token;
+          return this.authService.makeAuthenticatedRequest(this.token);
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+          this.router.navigateByUrl('/home');
+        },
+        error: (error) => {
+          Swal.fire('Incorrect username or password, try again');
+        },
+      });
   }
 }

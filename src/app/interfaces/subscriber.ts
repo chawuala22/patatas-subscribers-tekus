@@ -26,3 +26,8 @@ export interface IResult{
     count: number;
     Data: ISubscriber[];
 }
+
+export interface ICredencial{
+    UserName: string;
+    Password: string;
+}
