@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   background-image: url("/assets/img/background-potato-home.jpg");
-  height: calc(100vh - 64px);
+  height: calc(100vh - 92px);
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -25,6 +25,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
     mat-label {
       color: #fff;
     }
@@ -40,16 +41,24 @@
 
 @media (width < 768px) {
   .home-container {
+    display: grid;
+    justify-items: center;
     .create-container {
       padding: 0px 0rem 1rem 16rem;
     }
     .title-container {
+      text-align: center;
+      padding: 1rem;
       h1 {
         line-height: 1;
+        margin: 0;
       }
     }
     .table-container {
       width: 89%;
+      td{
+        padding: 0px 8px 0px 8px !important;
+      }
     }
     .hidden {
       display: none;
@@ -58,9 +67,13 @@
   mat-paginator {
     padding-bottom: 4%;
   }
+  .mat-mdc-icon-button.mat-mdc-button-base {
+    --mdc-icon-button-state-layer-size: 30px;
+  }
 }
 :host ::ng-deep {
   .mat-mdc-paginator-page-size {
     display: none;
   }
+ 
 }
