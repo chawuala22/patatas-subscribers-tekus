@@ -6,7 +6,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
-      <input formControlName="name" matInput  />
+      <input formControlName="Name" matInput  />
       <mat-error>
         Name is <strong>required</strong>
       </mat-error>
@@ -14,7 +14,7 @@
   
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input formControlName="email" matInput  />
+      <input formControlName="Email" matInput  />
       <mat-error>
         Email is <strong>required</strong>
       </mat-error>
@@ -22,10 +22,10 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Country code</mat-label>
-      <input formControlName="countryCode" matInput  />
+      <input formControlName="CountryCode" matInput  />
       <mat-hint>Eg: CO</mat-hint>
-      <mat-error *ngIf="!editData && formSubscriber?.value.countryCode.length > 2">Incorrect country code</mat-error>
-      <mat-error *ngIf="!editData && formSubscriber?.value.countryCode.length == 0" > Country code is <strong>required</strong></mat-error>
+      <mat-error *ngIf="!editData && formSubscriber?.value.CountryCode.length > 2">Incorrect country code</mat-error>
+      <mat-error *ngIf="!editData && formSubscriber?.value.CountryCode.length == 0" > Country code is <strong>required</strong></mat-error>
       <mat-error>
         
       </mat-error>
@@ -33,19 +33,19 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Phone</mat-label>
-      <input formControlName="phoneNumber" matInput  />
-      <mat-error *ngIf="!editData && formSubscriber?.value.phoneNumber.length != 0">Wrong phone number</mat-error>
-      <mat-error *ngIf="!editData && formSubscriber?.value.phoneNumber.length == 0"> Phone is <strong>required</strong></mat-error>
+      <input formControlName="PhoneNumber" matInput  />
+      <mat-error *ngIf="!editData && formSubscriber?.value.PhoneNumber.length != 0">Wrong phone number</mat-error>
+      <mat-error *ngIf="!editData && formSubscriber?.value.PhoneNumber.length == 0"> Phone is <strong>required</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Job title</mat-label>
-      <input formControlName="jobTitle" matInput />
+      <input formControlName="JobTitle" matInput />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Area</mat-label>
-      <input formControlName="area" matInput />
+      <input formControlName="Area" matInput />
     </mat-form-field>
   </form>
 </div>

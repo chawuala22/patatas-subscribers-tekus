@@ -1,20 +1,19 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
 import { PatatasSubscribersService } from 'src/app/services/patatas-subscribers.service';
 import Swal from 'sweetalert2';
 import { SubscriberFormComponent } from 'src/app/components/subscriber-form/subscriber-form.component';
-
+import { IResult, ISubscriber } from 'src/app/interfaces/subscriber';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-subscriber-list',
   templateUrl: './subscriber-list.component.html',
   styleUrls: ['./subscriber-list.component.scss'],
 })
-export class SubscriberListComponent implements AfterViewInit {
+export class SubscriberListComponent {
   displayedColumns: string[] = [
     'id',
     'name',
@@ -24,27 +23,27 @@ export class SubscriberListComponent implements AfterViewInit {
     'jobTitle',
     'action',
   ];
-  dataSource: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<ISubscriber>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  sort!: MatSort;
+  suscribersList: ISubscriber[] = [];
 
   constructor(
     public dialog: MatDialog,
-    private apiSubscribe: PatatasSubscribersService
+    private apiSubscribe: PatatasSubscribersService,
+    private router:Router
   ) {
-    // Create 100 users
-    const users = ['id', 'name', 'email', 'phone', 'area'];
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    this.getAllSubscribers();
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  getAllSubscribers() {
+    this.apiSubscribe.getAllSubscriptor().subscribe((result: IResult) => {
+      this.suscribersList = result.Data;
+      this.dataSource = new MatTableDataSource(this.suscribersList);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   createSubscriptor() {
@@ -73,15 +72,27 @@ export class SubscriberListComponent implements AfterViewInit {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire('Deleted!', 'Your subscriptor has been deleted.', 'success');
+        this.apiSubscribe.deleteSubscriptor(id).subscribe(() => {
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'Your subscriptor has been deleted.',
+            icon: 'success',
+            timer: 3000,
+          }).then(() => {
+            this.getAllSubscribers();
+          });
+        });
       }
     });
+  }
+
+  viewSubscriptor(id: number) {
+    this.router.navigateByUrl('/subscriber-detail/'+ id);
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }

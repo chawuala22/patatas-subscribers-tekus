@@ -1,23 +1,28 @@
 export interface ISubscriber {
-    SystemId:                     null;
+    SystemId?:                     null;
     Area:                         string;
-    PublicId:                     number;
+    PublicId?:                     number;
     CountryCode:                  string;
-    CountryName:                  null;
+    CountryName?:                  null;
     Name:                         string;
     Email:                        string;
     JobTitle:                     string;
     PhoneNumber:                  string;
-    PhoneCode:                    null;
-    PhoneCodeAndNumber:           string;
-    LastActivityUtc:              null;
-    LastActivity:                 null;
-    SubscriptionDate:             null;
-    SubscriptionMethod:           number;
-    SubscriptionState:            number;
-    SubscriptionStateDescription: string;
-    Topics:                       any[];
-    Activity:                     string;
-    ConnectionState:              number;
+    PhoneCode?:                    null;
+    PhoneCodeAndNumber?:           string;
+    LastActivityUtc?:              null;
+    LastActivity?:                 null;
+    SubscriptionDate?:             null;
+    SubscriptionMethod?:           number;
+    SubscriptionState?:            number;
+    SubscriptionStateDescription?: string;
+    Topics?:                       any[];
+    Activity?:                     string;
+    ConnectionState?:              number;
     Id:                           number;
+}
+
+export interface IResult{
+    count: number;
+    Data: ISubscriber[];
 }

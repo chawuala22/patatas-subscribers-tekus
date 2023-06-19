@@ -26,22 +26,22 @@ export class SubscriberFormComponent {
     if (this.editData) {
       this.actionBtn = 'Update';
       this.titleForm = 'Update subscriber';
-      this.formSubscriber.controls['name'].setValue(this.editData.name);
-      this.formSubscriber.controls['email'].setValue(this.editData.email);
-      this.formSubscriber.controls['countryCode'].setValue(
-        this.editData.countryCode
+      this.formSubscriber.controls['Name'].setValue(this.editData.Name);
+      this.formSubscriber.controls['Email'].setValue(this.editData.Email);
+      this.formSubscriber.controls['CountryCode'].setValue(
+        this.editData.CountryCode
       );
-      this.formSubscriber.controls['phoneNumber'].setValue(
-        this.editData.phoneNumber
+      this.formSubscriber.controls['PhoneNumber'].setValue(
+        this.editData.PhoneNumber
       );
-      this.formSubscriber.controls['jobTitle'].setValue(this.editData.jobTitle);
-      this.formSubscriber.controls['area'].setValue(this.editData.area);
+      this.formSubscriber.controls['JobTitle'].setValue(this.editData.JobTitle);
+      this.formSubscriber.controls['Area'].setValue(this.editData.Area);
     }
   }
   initForm() {
     this.formSubscriber = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: [
+      Name: ['', Validators.required],
+      Email: [
         '',
         [
           Validators.required,
@@ -50,11 +50,11 @@ export class SubscriberFormComponent {
           ),
         ],
       ],
-      countryCode: [
+      CountryCode: [
         '',
         [Validators.required, Validators.minLength(2), Validators.maxLength(2)],
       ],
-      phoneNumber: [
+      PhoneNumber: [
         '',
         [
           Validators.required,
@@ -63,16 +63,18 @@ export class SubscriberFormComponent {
           Validators.maxLength(10),
         ],
       ],
-      jobTitle: [''],
-      area: [''],
+      JobTitle: [''],
+      Area: [''],
     });
   }
 
   addSubscriber() {
+    let data = this.formSubscriber.value
+    data.Topics = [];
     if (!this.editData) {
       if (this.formSubscriber.valid) {
         this._httpService
-          .createSubscriptor(this.formSubscriber.value)
+          .createSubscriptor(data)
           .subscribe({
             next: (res) => {
               Swal.fire('Successfully created');
@@ -82,7 +84,9 @@ export class SubscriberFormComponent {
                 window.location.reload();
               }, 2000);
             },
-            error: () => {
+            error: (error) => {
+              console.error(error);
+              
               Swal.fire(
                 'Error, the subscriber was not created. Please try again'
               );
@@ -94,17 +98,21 @@ export class SubscriberFormComponent {
     }
   }
   update() {
+    let data = this.formSubscriber.value
+    data.Topics = [];
     if (this.formSubscriber.valid) {
       this._httpService
-        .updateSubscriptor(this.formSubscriber.value, this.editData.id)
+        .updateSubscriptor(data, this.editData.Id)
         .subscribe({
           next: (res) => {
-            Swal.fire('Successfully edited');
+            Swal.fire({
+              title:'Successfully edited',
+              timer: 3000
+            }).then(() => {
+              window.location.reload();
+            });
             this.formSubscriber.reset();
             this.dialogRef.close('update');
-            setTimeout(() => {
-              window.location.reload();
-            }, 2000);
           },
           error: () => {
             Swal.fire('Error, the subscriber was not edited. Please try again');

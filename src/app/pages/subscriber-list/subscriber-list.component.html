@@ -1,5 +1,4 @@
-<!-- <app-header></app-header> -->
-
+<app-header></app-header>
 <div class="home-container">
   <div class="title-container">
     <h1>List of subscribers</h1>
@@ -9,7 +8,7 @@
   </div>
   <div class="table-container">
     <mat-form-field appearance="outline">
-      <mat-label>Filter by name</mat-label>
+      <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" #input />
     </mat-form-field>
     <div class="mat-elevation-z8">
@@ -17,37 +16,37 @@
         <!-- ID Column -->
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-          <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.Id }}</td>
         </ng-container>
 
         <!-- Email Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-          <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.Email }}</td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-          <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.Name }}</td>
         </ng-container>
 
         <!-- PhoneCodeAndNumber Column -->
         <ng-container matColumnDef="phone">
           <th  class="hidden" mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
-          <td  class="hidden" mat-cell *matCellDef="let row">{{ row.phone }}</td>
+          <td  class="hidden" mat-cell *matCellDef="let row">{{ row.PhoneCodeAndNumber }}</td>
         </ng-container>
 
         <!-- Area Column -->
         <ng-container matColumnDef="area">
           <th  class="hidden" mat-header-cell *matHeaderCellDef mat-sort-header>Area</th>
-          <td  class="hidden" mat-cell *matCellDef="let row">{{ row.area }}</td>
+          <td  class="hidden" mat-cell *matCellDef="let row">{{ row.Area }}</td>
         </ng-container>
 
         <!-- Job Title Column -->
         <ng-container matColumnDef="jobTitle">
           <th  class="hidden" mat-header-cell *matHeaderCellDef mat-sort-header>Job Title</th>
-          <td  class="hidden" mat-cell *matCellDef="let row">{{ row.job }}</td>
+          <td  class="hidden" mat-cell *matCellDef="let row">{{ row.JobTitle }}</td>
         </ng-container>
 
         <!-- Action Column -->
@@ -57,10 +56,10 @@
             <button (click)="editSubscriptor(row)" mat-icon-button color="primary">
               <mat-icon>edit</mat-icon>
             </button>
-            <button (click)="deleteSubscriptor(1)" mat-icon-button color="warn">
+            <button (click)="deleteSubscriptor(row.Id)" mat-icon-button color="warn">
               <mat-icon>delete</mat-icon>
             </button>
-            <button mat-icon-button color="accent">
+            <button (click)="viewSubscriptor(row.Id)" mat-icon-button color="accent">
               <mat-icon>visibility</mat-icon>
             </button>
           </td>
