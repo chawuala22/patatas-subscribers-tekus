@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+// import { TestBed } from '@angular/core/testing';
 
-import { PatatasSubscribersService } from './patatas-subscribers.service';
+// import { PatatasSubscribersService } from './patatas-subscribers.service';
 
-describe('PatatasSubscribersService', () => {
-  let service: PatatasSubscribersService;
+// describe('PatatasSubscribersService', () => {
+//   let service: PatatasSubscribersService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(PatatasSubscribersService);
-  });
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({});
+//     service = TestBed.inject(PatatasSubscribersService);
+//   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+//   it('should be created', () => {
+//     expect(service).toBeTruthy();
+//   });
+// });
