@@ -32,11 +32,11 @@ export class SubscriberListComponent {
   constructor(
     public dialog: MatDialog,
     private apiSubscribe: PatatasSubscribersService,
-    private router:Router
+    private router: Router
   ) {
     this.getAllSubscribers();
   }
-
+  /* Method to obtain all subscribers */
   getAllSubscribers() {
     this.apiSubscribe.getAllSubscriptor().subscribe((result: IResult) => {
       this.suscribersList = result.Data;
@@ -45,13 +45,14 @@ export class SubscriberListComponent {
       this.dataSource.sort = this.sort;
     });
   }
-
+  /* Method to create a subscriber */
   createSubscriptor() {
     let dialogRef = this.dialog.open(SubscriberFormComponent, {
       height: '400px',
       width: '600px',
     });
   }
+  /* Method to edit a subscriber */
   editSubscriptor(row: any) {
     this.dialog.open(SubscriberFormComponent, {
       height: '400px',
@@ -59,6 +60,7 @@ export class SubscriberListComponent {
       data: row,
     });
   }
+  /* Method to edit a subscriber */
   deleteSubscriptor(id: number) {
     Swal.fire({
       title: 'Are you sure?',
@@ -83,9 +85,11 @@ export class SubscriberListComponent {
       }
     });
   }
+  /* Method to navigate to detail view */
   viewSubscriptor(id: number) {
-    this.router.navigateByUrl('/subscriber-detail/'+ id);
+    this.router.navigateByUrl('/subscriber-detail/' + id);
   }
+  /* Method used for filtering */
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

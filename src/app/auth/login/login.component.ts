@@ -24,6 +24,7 @@ export class LoginComponent {
       password: ['', Validators.required],
     });
   }
+  /* The switchMap operator is used to combine the two subscriptions into a single operator string. */
   validatorUser() {
     if (!this.loginForm.valid) {
       return;

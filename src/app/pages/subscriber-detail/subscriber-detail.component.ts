@@ -24,6 +24,7 @@ export class SubscriberDetailComponent implements OnInit {
     this.getcountries();
   }
 
+  /* Function to obtain a subscriber, the id is received by parameter */
   getSubscriptor() {
     const idSubscriber = this.activatedRoute.snapshot.params['id'];
     this.apiSubscribers
@@ -33,7 +34,7 @@ export class SubscriberDetailComponent implements OnInit {
         this.countryCode = this.subscriber.CountryCode;
       });
   }
-
+/* Function to get the countryName to display it in the view */
   getcountries() {
     this.apiSubscribers.getCountry().subscribe((res) => {
       this.countries = res.Data;
@@ -46,7 +47,7 @@ export class SubscriberDetailComponent implements OnInit {
       });
     });
   }
-
+/* back function */
   back() {
     window.history.back();
   }

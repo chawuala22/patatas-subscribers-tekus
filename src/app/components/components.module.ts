@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SubscriberFormComponent } from './subscriber-form/subscriber-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+/* Imports Angular Material */
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';

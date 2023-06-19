@@ -4,14 +4,15 @@ import { SubscriberListComponent } from './subscriber-list/subscriber-list.compo
 import { SubscriberDetailComponent } from './subscriber-detail/subscriber-detail.component';
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../components/components.module';
+import { HttpClientModule } from '@angular/common/http';
 
+/* Imports Angular Material */
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [SubscriberListComponent, SubscriberDetailComponent],

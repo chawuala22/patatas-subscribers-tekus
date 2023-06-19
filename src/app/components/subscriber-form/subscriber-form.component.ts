@@ -22,7 +22,6 @@ export class SubscriberFormComponent {
     @Inject(MAT_DIALOG_DATA) public editData: any,
     private dialogRef: MatDialogRef<SubscriberFormComponent>
   ) {}
-
   ngOnInit(): void {
     this.initForm();
     if (this.editData) {
@@ -40,6 +39,7 @@ export class SubscriberFormComponent {
       this.formSubscriber.controls['Area'].setValue(this.editData.Area);
     }
   }
+  /* This function is used to initialize the form */
   initForm() {
     this.formSubscriber = this.formBuilder.group({
       Name: ['', Validators.required],
@@ -69,7 +69,7 @@ export class SubscriberFormComponent {
       Area: [''],
     });
   }
-
+/* This function is used to create a new subscriber or subscribers. */
   addSubscriber() {
     let data = this.formSubscriber.value;
     data.Topics = [];
@@ -108,10 +108,11 @@ export class SubscriberFormComponent {
         });
       }
     } else {
-      this.update();
+      this.updateSubscriber();
     }
   }
-  update() {
+/* This function is used to update a subscriber */
+  updateSubscriber() {
     let data = this.formSubscriber.value;
     data.Topics = [];
     if (this.formSubscriber.valid) {
