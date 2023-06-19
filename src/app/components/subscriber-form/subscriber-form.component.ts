@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ISubscriber } from 'src/app/interfaces/subscriber';
 import { PatatasSubscribersService } from 'src/app/services/patatas-subscribers.service';
 import Swal from 'sweetalert2';
 
@@ -13,6 +14,7 @@ export class SubscriberFormComponent {
   formSubscriber!: FormGroup;
   actionBtn: string = 'Create';
   titleForm: string = 'Create new subscriber';
+  Subscribers: ISubscriber[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -69,55 +71,65 @@ export class SubscriberFormComponent {
   }
 
   addSubscriber() {
-    let data = this.formSubscriber.value
+    let data = this.formSubscriber.value;
     data.Topics = [];
     if (!this.editData) {
       if (this.formSubscriber.valid) {
-        this._httpService
-          .createSubscriptor(data)
-          .subscribe({
-            next: (res) => {
-              Swal.fire('Successfully created');
-              this.formSubscriber.reset();
-              this.dialogRef.close();
-              setTimeout(() => {
-                window.location.reload();
-              }, 2000);
-            },
-            error: (error) => {
-              console.error(error);
-              
-              Swal.fire(
-                'Error, the subscriber was not created. Please try again'
-              );
-            },
-          });
+        Swal.fire({
+          title: 'Do you want to create another subscriber?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes',
+          cancelButtonText: 'No',
+        }).then((result) => {
+          if (!result.isConfirmed) {
+            this.Subscribers.push(data);
+            this._httpService.createSubscriptor(this.Subscribers).subscribe({
+              next: (res) => {
+                Swal.fire('Successfully created');
+                this.formSubscriber.reset();
+                this.dialogRef.close();
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
+              },
+              error: (error) => {
+                Swal.fire(
+                  'Error, the subscriber was not created. Please try again'
+                );
+              },
+            });
+          } else {
+            this.Subscribers.push(data);
+            this.formSubscriber.reset();
+          }
+        });
       }
     } else {
       this.update();
     }
   }
   update() {
-    let data = this.formSubscriber.value
+    let data = this.formSubscriber.value;
     data.Topics = [];
     if (this.formSubscriber.valid) {
-      this._httpService
-        .updateSubscriptor(data, this.editData.Id)
-        .subscribe({
-          next: (res) => {
-            Swal.fire({
-              title:'Successfully edited',
-              timer: 3000
-            }).then(() => {
-              window.location.reload();
-            });
-            this.formSubscriber.reset();
-            this.dialogRef.close('update');
-          },
-          error: () => {
-            Swal.fire('Error, the subscriber was not edited. Please try again');
-          },
-        });
+      this._httpService.updateSubscriptor(data, this.editData.Id).subscribe({
+        next: (res) => {
+          Swal.fire({
+            title: 'Successfully edited',
+            timer: 3000,
+          }).then(() => {
+            window.location.reload();
+          });
+          this.formSubscriber.reset();
+          this.dialogRef.close('update');
+        },
+        error: () => {
+          Swal.fire('Error, the subscriber was not edited. Please try again');
+        },
+      });
     }
   }
 }

@@ -52,7 +52,6 @@ export class SubscriberListComponent {
       width: '600px',
     });
   }
-
   editSubscriptor(row: any) {
     this.dialog.open(SubscriberFormComponent, {
       height: '400px',
@@ -60,7 +59,6 @@ export class SubscriberListComponent {
       data: row,
     });
   }
-
   deleteSubscriptor(id: number) {
     Swal.fire({
       title: 'Are you sure?',
@@ -85,11 +83,9 @@ export class SubscriberListComponent {
       }
     });
   }
-
   viewSubscriptor(id: number) {
     this.router.navigateByUrl('/subscriber-detail/'+ id);
   }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

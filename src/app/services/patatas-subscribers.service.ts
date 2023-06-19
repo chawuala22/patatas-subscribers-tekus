@@ -16,7 +16,7 @@ export class PatatasSubscribersService {
     private authService: AuthService
   ) {}
 
-  createSubscriptor(data: ISubscriber) {
+  createSubscriptor(data: ISubscriber[]) {
     this.authService.refreshToken();
     const token = this.cookieService.get('authToken');
     const headers = new HttpHeaders({
@@ -24,7 +24,7 @@ export class PatatasSubscribersService {
     });
     return this._httpClient.post<ISubscriber>(
       `${this.urlBase}subscribers`,
-      { Subscribers: [data] },
+      { Subscribers: data },
       { headers }
     );
   }
