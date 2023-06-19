@@ -35,7 +35,7 @@
     }
   }
 }
-
+/* Responsive  mobile */
 @media (width < 768px) {
   .detail-container {
     background-image: url("/assets/img/background-potato-detail-mobile.jpg");
@@ -51,5 +51,17 @@
         margin-left: 17rem;
       }
     }
+  }
+}
+
+/* responsive destop-mobile */
+@media (769px <= width < 1400px) {
+  .detail-container{
+    .card-container{
+      button{
+        margin-left: 20rem;
+      }
+    }
+
   }
 }

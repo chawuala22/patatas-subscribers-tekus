@@ -25,7 +25,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
     mat-label {
       color: #fff;
     }
@@ -38,7 +38,7 @@
     }
   }
 }
-
+/* Responsive mobile */
 @media (width < 768px) {
   .home-container {
     display: grid;
@@ -56,7 +56,7 @@
     }
     .table-container {
       width: 89%;
-      td{
+      td {
         padding: 0px 8px 0px 8px !important;
       }
     }
@@ -71,9 +71,35 @@
     --mdc-icon-button-state-layer-size: 30px;
   }
 }
+
+/* Responsive desktop-small */
+@media (769px <= width < 1400px) {
+  .home-container {
+    .create-container {
+      padding: 0px 0rem 1rem 70rem;
+    }
+    .table-container {
+      width: 96%;
+      td {
+        padding: 0px 8px 0px 8px !important;
+      }
+    }
+    .home-container {
+      .create-container {
+        padding: 0px 0rem 1rem 70rem;
+      }
+      .table-container {
+        width: 96%;
+        td {
+          padding: 0px 8px 0px 8px !important;
+        }
+      }
+    }
+  }
+}
+
 :host ::ng-deep {
   .mat-mdc-paginator-page-size {
     display: none;
   }
- 
 }
