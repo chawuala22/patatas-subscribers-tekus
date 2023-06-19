@@ -42,7 +42,6 @@ export class LoginComponent {
       )
       .subscribe({
         next: (response) => {
-          console.log(response);
           this.router.navigateByUrl('/home');
         },
         error: (error) => {

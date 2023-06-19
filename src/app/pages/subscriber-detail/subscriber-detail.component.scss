@@ -1,0 +1,55 @@
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-image: url("/assets/img/background-potato-detail.jpg");
+  height: calc(100vh - 92px);
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: space-evenly;
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 53%;
+    box-shadow: 0 5px 5px #0006;
+    border: 1px solid #000;
+    border-radius: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12rem;
+
+    li {
+      list-style: none;
+      margin-bottom: 5%;
+      &::before {
+        content: "*";
+        color: #000;
+        font-weight: 700;
+        margin-right: 20px;
+      }
+    }
+    button {
+      margin-left: 30rem;
+    }
+  }
+}
+
+@media (width < 768px) {
+  .detail-container {
+    background-image: url("/assets/img/background-potato-detail-mobile.jpg");
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .card-container {
+      width: 93%;
+      height: 55%;
+      margin-top: 4%;
+      margin-right: 0;
+      button {
+        margin-left: 17rem;
+      }
+    }
+  }
+}

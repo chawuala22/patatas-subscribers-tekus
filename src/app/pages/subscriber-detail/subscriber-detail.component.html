@@ -1,3 +1,19 @@
 <app-header></app-header>
-<h1>Aqui va el detallado xdxdxd</h1>
+<div class="detail-container">
+  <div class="card-container">
+      <h1>More details</h1>
+      <ul *ngIf="subscriber">
+        <li><strong>PublicId: </strong>{{subscriber.PublicId}}</li>
+        <li><strong>Name: </strong>{{subscriber.Name}}</li>
+        <li><strong>PhoneCodeAndNumber: </strong>{{subscriber.PhoneCodeAndNumber}}</li>
+        <li><strong>Email: </strong>{{subscriber.Email}}</li>
+        <li><strong>CountryCode: </strong>{{subscriber.CountryCode}}</li>
+        <li><strong>CountryName: </strong>{{ countryName == null  ? 'N/A' : countryName }}</li>
+        <li><strong>JobTitle: </strong>{{ subscriber.JobTitle }}</li>
+        <li><strong>Area: </strong>{{ subscriber.Area }}</li>
+        <li><strong>SubscriptionStateDescription: </strong>  {{ subscriber.SubscriptionStateDescription }}</li>
+      </ul>
+      <button (click)="back()" mat-raised-button>Back</button>
+  </div>
+</div>
 <app-footer></app-footer>

@@ -70,4 +70,15 @@ export class PatatasSubscribersService {
       { headers }
     );
   }
+
+
+  getCountry(){
+    const token = this.cookieService.get('authToken');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    const params = new HttpParams().set('count', '255');
+    return this._httpClient.get<IResult>(`${this.urlBase}countries/`, { headers, params });
+  }
+
 }

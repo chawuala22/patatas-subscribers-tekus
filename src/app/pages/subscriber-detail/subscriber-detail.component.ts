@@ -9,18 +9,45 @@ import { PatatasSubscribersService } from 'src/app/services/patatas-subscribers.
   styleUrls: ['./subscriber-detail.component.scss'],
 })
 export class SubscriberDetailComponent implements OnInit {
-  constructor(private apiSubscribers: PatatasSubscribersService, private activatedRoute: ActivatedRoute) {}
+  subscriber: ISubscriber | undefined;
+  countryCode: string = '';
+  countryName: string = '';
+  countries: any[] = [];
+
+  constructor(
+    private apiSubscribers: PatatasSubscribersService,
+    private activatedRoute: ActivatedRoute
+  ) {}
+  
   ngOnInit(): void {
-    this.getSubscriptor()
+    this.getSubscriptor();
+    this.getcountries();
   }
 
   getSubscriptor() {
     const idSubscriber = this.activatedRoute.snapshot.params['id'];
-    this.apiSubscribers.getSubscriptor(idSubscriber).subscribe((res)=>{
-      console.log(res);
-      
-    })
-    console.log(idSubscriber);
-    
+    this.apiSubscribers
+      .getSubscriptor(idSubscriber)
+      .subscribe((res: ISubscriber) => {
+        this.subscriber = res;
+        this.countryCode = this.subscriber.CountryCode;
+      });
+  }
+
+  getcountries() {
+    this.apiSubscribers.getCountry().subscribe((res) => {
+      this.countries = res.Data;
+      let matchingCountry;
+      this.countries.forEach((country) => {
+        if (country.Code === this.countryCode) {
+          matchingCountry = country;
+          this.countryName = matchingCountry.Name;
+        }
+      });
+    });
+  }
+
+  back() {
+    window.history.back();
   }
 }
